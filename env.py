@@ -12,6 +12,9 @@ class Env(object):
 
     @staticmethod
     def export(key, value):
+        if key in Env._env_variables and Env._env_variables[key] == value:
+            return
+        
         logging.debug(f"Updating env file with {key} = {value}")
         Env._env_variables[key] = value
         
