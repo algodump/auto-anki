@@ -1,0 +1,12 @@
+To translate the list of Dutch words you provided into English, create simple Dutch sentences, and wrap them in JSON format as requested, here’s a template and sample examples based on the instruction:
+
+{
+    "words:": [
+        {
+            "word": "word from the list"
+            "word_translation": "translation of the Dutch word", 
+            "example_in_dutch": "simple sentence in Dutch",
+            "translation_of_example": "simple translation of the example"
+        }
+    ]
+}
