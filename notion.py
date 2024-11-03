@@ -42,11 +42,12 @@ def retrieve_words():
             if word:
                 words.append(word)
             else:
-                logging.error(f"ERROR: can't find plain_text in the Notion response")
+                logging.error(f"Can't find plain_text in the Notion response")
 
+        logging.debug(f"Retrieved words: {words}")
         return words
     except:
-        logging.error(f"ERROR:{traceback.format_exc()}\nThis program assumes that Notion page contains one bulled list. Either your Notion page looks differently or Notion API has changed.")
+        logging.error(f"{traceback.format_exc()}\nThis program assumes that Notion page contains one bulled list. Either your Notion page looks differently or Notion API has changed.")
 
 def get_remote_last_edit_time():
     anki_page = get_notion_page_content(get_children=False)
@@ -56,7 +57,7 @@ def check_for_updates():
     logging.info("Checking status ...")
 
     remote_last_edit_date = get_remote_last_edit_time()
-    local_last_edit_date = Env.get("LAST_EDIT_DATE")
+    local_last_edit_date = Env.get_or_none("LAST_EDIT_DATE")
     update_needed = local_last_edit_date == None or remote_last_edit_date > datetime.fromisoformat(local_last_edit_date)
 
     if update_needed:
